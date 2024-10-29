@@ -21,7 +21,7 @@ jobs:
         run: |
           yarn install
           yarn version $VERSION
-          yarn conventional-changelog -p conventionalcommits -i CHANGELOG.md -s
+          yarn conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -u 0
           git add CHANGELOG.md package.json
         env:
           VERSION: ${{ github.event.inputs.version }}

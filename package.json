@@ -39,7 +39,7 @@
         "@typescript-eslint/eslint-plugin": "4.x",
         "@typescript-eslint/parser": "4.x",
         "commitlint": "19.5.0",
-        "conventional-changelog-cli": "2.x",
+        "conventional-changelog-cli": "5.0.0",
         "eslint": "7.x",
         "eslint-plugin-you-dont-need-lodash-underscore": "6.x",
         "jest": "26.x",
