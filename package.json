@@ -46,7 +46,6 @@
         "eslint-config-prettier": "8.x",
         "eslint-plugin-prettier": "3.x",
         "eslint-plugin-you-dont-need-lodash-underscore": "6.x",
-        "husky": "4.x",
         "jest": "26.x",
         "nyc": "15.x",
         "prettier": "2.x",
@@ -60,6 +59,7 @@
         "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
         "version": "echo ${npm_package_version}",
         "lint": "eslint ./*.ts ./test/*.js --fix",
-        "lint-check": "eslint ./*.ts ./test/*.js"
+        "lint-check": "eslint ./*.ts ./test/*.js",
+        "postinstall": "git config core.hooksPath ./.githooks || true"
     }
 }
