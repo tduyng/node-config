@@ -1,7 +1,7 @@
-import _ from 'lodash'
+import fs from 'node:fs'
+import path from 'node:path'
 import yaml from 'js-yaml'
-import fs from 'fs'
-import path from 'path'
+import _ from 'lodash'
 
 type Internals = {
     cfg: Record<string, unknown>
@@ -66,14 +66,14 @@ export const load = (): void => {
             .map((filename) => filename.trim())
             .filter(
                 // remove garbage and prevent dupes
-                (filename) => !_.isEmpty(filename) && filename !== 'base',
+                (filename) => !_.isEmpty(filename) && filename !== 'base'
             )
     }
 
-    confFiles.forEach((confFile) => {
+    for (const confFile of confFiles) {
         const fileContent = internals.read?.(path.join(confPath, confFile))
         internals.merge?.(internals.cfg, fileContent)
-    })
+    }
 
     // apply environment overrides (optional)
     const envOverridesConfig = internals.readEventually?.(path.join(confPath, 'env_mapping'))
@@ -92,7 +92,7 @@ export const load = (): void => {
  *
  */
 internals.read = (
-    keyPath: string,
+    keyPath: string
     // eslint-disable-next-line @typescript-eslint/ban-types
 ): Record<string, unknown> | undefined | null | string | object | number => {
     const cleanedPath = internals.fillYamlExtension?.(keyPath) ?? keyPath
@@ -170,7 +170,7 @@ internals.cast = (type: string, value: string | number): string | number | boole
  * Read env variables override file and set config from env vars.
  */
 internals.getEnvOverrides = (
-    mappings: Record<string, { key: string; type: string } | string>,
+    mappings: Record<string, { key: string; type: string } | string>
 ): unknown => {
     const overriden = {}
 
@@ -204,7 +204,7 @@ internals.merge = <TObject, TSource>(object: TObject, source: TSource): TObject 
     _.mergeWith(object, source, (object, source) => (Array.isArray(source) ? source : undefined))
 
 const isAdvancedConfig = (
-    conf: { key: string; type: string } | string,
+    conf: { key: string; type: string } | string
 ): conf is { key: string; type: string } => {
     return (conf as { key: string; type: string }).key !== undefined
 }

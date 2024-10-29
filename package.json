@@ -32,6 +32,7 @@
         "lodash": "4.x"
     },
     "devDependencies": {
+        "@biomejs/biome": "^1.9.4",
         "@eslint/js": "^9.13.0",
         "@types/jest": "26.x",
         "@types/js-yaml": "4.x",
@@ -39,13 +40,10 @@
         "@types/node": "14.x",
         "commitlint": "19.5.0",
         "conventional-changelog-cli": "5.0.0",
-        "eslint": "9.13.0",
         "jest": "26.x",
         "nyc": "15.x",
-        "prettier": "3.3.3",
         "ts-jest": "26.x",
-        "typescript": "5.6.3",
-        "typescript-eslint": "^8.12.2"
+        "typescript": "5.6.3"
     },
     "scripts": {
         "tsc": "tsc -d",
@@ -53,12 +51,8 @@
         "test-cover": "jest --coverage",
         "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
         "version": "echo ${npm_package_version}",
-        "lint": "yarn run eslint && yarn run prettier",
-        "lint-check": "yarn run eslint-check && yarn run prettier-check",
-        "eslint": "eslint '{src,test}/**/*.{ts,js,cjs,mjs}' --quiet --cache --fix",
-        "eslint-check": "eslint '{src,test}/**/*.{ts,js,cjs,mjs}' --quiet",
-        "prettier": "prettier --write --cache .",
-        "prettier-check": "prettier --check .",
+        "lint": "biome check --write",
+        "lint-check": "biome check",
         "postinstall": "git config core.hooksPath ./.githooks || true"
     }
 }
