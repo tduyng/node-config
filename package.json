@@ -32,21 +32,20 @@
         "lodash": "4.x"
     },
     "devDependencies": {
+        "@eslint/js": "^9.13.0",
         "@types/jest": "26.x",
         "@types/js-yaml": "4.x",
         "@types/lodash": "4.x",
         "@types/node": "14.x",
-        "@typescript-eslint/eslint-plugin": "4.x",
-        "@typescript-eslint/parser": "4.x",
         "commitlint": "19.5.0",
         "conventional-changelog-cli": "5.0.0",
-        "eslint": "7.x",
-        "eslint-plugin-you-dont-need-lodash-underscore": "6.x",
+        "eslint": "9.13.0",
         "jest": "26.x",
         "nyc": "15.x",
         "prettier": "3.3.3",
         "ts-jest": "26.x",
-        "typescript": "3.9.x"
+        "typescript": "5.6.3",
+        "typescript-eslint": "^8.12.2"
     },
     "scripts": {
         "tsc": "tsc -d",
@@ -54,10 +53,12 @@
         "test-cover": "jest --coverage",
         "coverage": "jest --coverage --coverageReporters=text-lcov | coveralls",
         "version": "echo ${npm_package_version}",
-        "lint": "eslint ./*.ts ./test/*.js --fix",
-        "lint-check": "eslint ./*.ts ./test/*.js",
-        "format": "prettier --write --cache .",
-        "format-check": "prettier --check --cache .",
+        "lint": "yarn run eslint && yarn run prettier",
+        "lint-check": "yarn run eslint-check && yarn run prettier-check",
+        "eslint": "eslint '{src,test}/**/*.{ts,js,cjs,mjs}' --quiet --cache --fix",
+        "eslint-check": "eslint '{src,test}/**/*.{ts,js,cjs,mjs}' --quiet",
+        "prettier": "prettier --write --cache .",
+        "prettier-check": "prettier --check .",
         "postinstall": "git config core.hooksPath ./.githooks || true"
     }
 }
