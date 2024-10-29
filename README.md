@@ -7,12 +7,12 @@
 
 A lightweight/opinionated/versatile configuration module powered by yaml.
 
-- [Motivation](#motivation)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Environment variables override](#environment-variables-override)
-  - [CONF_FILES override](#conf_files-override)
-  - [Inheritance model](#inheritance-model)
+-   [Motivation](#motivation)
+-   [Installation](#installation)
+-   [Usage](#usage)
+    -   [Environment variables override](#environment-variables-override)
+    -   [CONF_FILES override](#conf_files-override)
+    -   [Inheritance model](#inheritance-model)
 
 ## Motivation
 
@@ -21,16 +21,16 @@ Why the hell another Node.js config package?
 That's a question we asked ourselves before starting this module,
 we wanted simple config management with the following features:
 
-- Simple to use
-- Small footprint
-- Homogeneous config file format
-- No global/specific/pre-configured module to load (eg. require the lib, configure it and then require this file instead directly using the package)
-- Human readable
-- Concise
-- Comments
-- Types
-- Overrides
-- Env variables support
+-   Simple to use
+-   Small footprint
+-   Homogeneous config file format
+-   No global/specific/pre-configured module to load (eg. require the lib, configure it and then require this file instead directly using the package)
+-   Human readable
+-   Concise
+-   Comments
+-   Types
+-   Overrides
+-   Env variables support
 
 Several modules already exist, but none of them matched our requirements,
 some were far too limited and others, in our opinion, really bloated.
@@ -92,7 +92,7 @@ Then to get a config key value in your code:
 # /conf/base.yaml
 host: base.config.io
 external_api:
-  key: xxxxx
+    key: xxxxx
 ```
 
 ```javascript
@@ -122,7 +122,7 @@ Assuming we've got the following config files:
 # /conf/base.yaml
 host: base.config.io
 external_api:
-  key: xxxxx
+    key: xxxxx
 ```
 
 ```yaml
@@ -162,11 +162,11 @@ That's why you can optionally force the type of the gathered environment variabl
 ```yaml
 # /conf/env_mapping.yaml
 PORT:
-  key:  port
-  type: number
+    key: port
+    type: number
 USE_SSL:
-  key:  use_ssl
-  type: boolean
+    key: use_ssl
+    type: boolean
 ```
 
 For now we only support `number` and `boolean` types, if you think others could be useful,
@@ -187,8 +187,8 @@ Let's say we've got those config files:
 ```yaml
 # /conf/base.yaml
 service: awesome
-host:    base.config.io
-port:    8080
+host: base.config.io
+port: 8080
 ```
 
 ```yaml
@@ -259,11 +259,11 @@ CONF_FILES=prod,google,extra node test.js
 base.yaml <— [<CONF_FILES>.yaml] <— [env_mapping.yaml]
 ```
 
-*All files surrounded by `[]` are optional.*
+_All files surrounded by `[]` are optional._
 
 1. Load config from `<CONF_DIR>/base.yaml`
-3. If `CONF_FILES` is defined, load each corresponding file if it exists
-4. If `<CONF_DIR>/env_mapping.yaml` exists and some environment variables match, override with those values
+2. If `CONF_FILES` is defined, load each corresponding file if it exists
+3. If `<CONF_DIR>/env_mapping.yaml` exists and some environment variables match, override with those values
 
 [npm-image]: https://img.shields.io/npm/v/@ekino/config.svg?style=flat-square
 [npm-url]: https://www.npmjs.com/package/@ekino/config

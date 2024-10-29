@@ -34,15 +34,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.get_version.outputs.VERSION }}
-          release_name: "V${{ steps.get_version.outputs.VERSION }}"
+          release_name: 'V${{ steps.get_version.outputs.VERSION }}'
       - name: Upload library code
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: "./ekino-node-config-${{ steps.get_version.outputs.VERSION }}.zip"
-          asset_name: "ekino-node-config-${{ steps.get_version.outputs.VERSION }}"
+          asset_path: './ekino-node-config-${{ steps.get_version.outputs.VERSION }}.zip'
+          asset_name: 'ekino-node-config-${{ steps.get_version.outputs.VERSION }}'
           asset_content_type: application/zip
       - name: Publish to NPM
         run: npm publish --access public
